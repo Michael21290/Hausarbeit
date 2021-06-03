@@ -1,0 +1,39 @@
+﻿@page
+@model StreamingDienst.Pages.BenutzerAnsicht.FolgenUebersichtModel
+
+@{
+    ViewData["Title"] = "FolgenUebersicht";
+}
+
+<h2>Serie: @Html.DisplayFor(modelItem => Model.Serie.SerienTitel)</h2>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Titel
+            </th>
+            <th>
+                Länge
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Folge.Where(x => x.FSerienID.ID == Model.Serie.ID))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FolgenTitel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FolgenLaenge)
+                </td>
+                <td>
+                    <a asp-page="./FolgeAnsehen" asp-route-FolgenID="@item.ID" asp-route-SerienID="@Model.Serie.ID" asp-route-UserID="@Model.User.ID">Jetzt ansehen</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-page="./Bibliothek" asp-route-UserID="@Model.User.ID">Zurück</a>

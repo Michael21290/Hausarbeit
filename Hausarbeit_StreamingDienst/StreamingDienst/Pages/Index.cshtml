@@ -1,0 +1,26 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="text-center">
+    <form method="post">
+        <h1 class="display-4">Login</h1>
+        <br />
+        <hr />
+        <br />
+        @ViewData["error"]
+        <br />
+        <br />
+        <div class="form-group">
+            <label class="font-weight-bold">Benutzername</label> &nbsp&nbsp <input type="text" asp-for="Benutzername" class="form-control-sm" />
+        </div>
+        <div class="form-group">
+            <label class="font-weight-bold">Passwort</label> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="password" asp-for="Passwort" class="form-control-sm" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Einloggen" class="btn btn-primary" /> <a asp-page="./BenutzerAnsicht/Registrieren" class="btn btn-primary">Registrieren</a>
+        </div>
+    </form>
+</div>

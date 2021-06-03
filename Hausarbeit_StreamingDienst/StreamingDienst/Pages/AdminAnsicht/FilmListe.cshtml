@@ -1,0 +1,57 @@
+﻿@page
+@model StreamingDienst.Pages.AdminAnsicht.FilmListeModel
+
+@{
+    ViewData["Title"] = "Filmliste";
+}
+
+<h1>Filmliste</h1>
+
+<p>
+    <a asp-page="./Filme/FilmHinzufuegen" asp-route-AdminID="@Model.Admin.ID">Film hinzufügen</a>
+</p>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Titel
+            </th>
+            <th>
+                Länge
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Film[0].Leihpreis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Film[0].Kaufpreis)
+            </th>
+            <th>
+                Genre
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Film) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FilmTitel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FilmLaenge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Leihpreis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kaufpreis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FGenreID.GenreName)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<a asp-page="./Index" asp-route-AdminID="@Model.Admin.ID">Zurück</a>

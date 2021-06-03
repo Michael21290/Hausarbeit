@@ -1,0 +1,108 @@
+﻿@page
+@model StreamingDienst.Pages.BenutzerAnsicht.BibliothekModel
+
+@{
+    ViewData["Title"] = "Bibliothek";
+}
+
+<h1>Bibliothek</h1>
+<hr />
+<form method="post">
+    <p>
+        Suche: <input type="text" asp-for="Suche" class="form-control-sm" placeholder="Titel"/>
+        <br />
+        Genre:
+        <select asp-for="SucheGenre" asp-items="Model.GenreListe" class="form-control-sm" placeholder="Titel">
+            <option value="">Alle</option>
+        </select>
+        <br />
+        <input type="submit" value="Suchen" class="btn btn-primary" />
+        <br />
+    </p>
+</form>
+<br />
+<br />
+<h3>Filme</h3>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Titel
+            </th>
+            <th>
+                Länge
+            </th>
+            <th>
+                Genre
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Filme)
+        {
+            @foreach (var userFilm in Model.UserFilm.Where(x => x.UFilmID.ID == item.ID && (x.LeihDatum == DateTime.MinValue || DateTime.Now.Subtract(x.LeihDatum) <= new TimeSpan(7, 00, 00, 00))))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FilmTitel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FilmLaenge)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FGenreID.GenreName)
+                    </td>
+                    <td>
+                        <a asp-page="./FilmAnsehen" asp-route-FilmID="@item.ID" asp-route-UserID="@Model.User.ID">Jetzt ansehen</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<hr />
+<br />
+<h3>Serien</h3>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Titel
+            </th>
+            <th>
+                Folgenanzahl
+            </th>
+            <th>
+                Genre
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Serien)
+        {
+            @foreach (var userFilm in Model.UserSerie.Where(x => x.USerienID.ID == item.ID && (x.LeihDatum == DateTime.MinValue || DateTime.Now.Subtract(x.LeihDatum) <= new TimeSpan(7, 00, 00, 00))))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SerienTitel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AnzahlFolgen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SGenreID.GenreName)
+                    </td>
+                    <td>
+                        <a asp-page="./FolgenUebersicht" asp-route-SerienID="@item.ID" asp-route-UserID="@Model.User.ID">Verfügbare Folgen</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<br>
+<a asp-page="./Index" asp-route-UserID="@Model.User.ID">Zurück</a>

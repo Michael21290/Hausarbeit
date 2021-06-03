@@ -1,0 +1,31 @@
+﻿@page
+@model StreamingDienst.Pages.AdminAnsicht.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="text-center">
+    <h1>Willkommen @Model.Admin.Vorname</h1>
+</div>
+
+
+<div class="form-group, text-center">
+    <a asp-page="./Accountdaten" asp-route-AdminID="@Model.Admin.ID" class="btn btn-lg">Accountdaten</a>
+    <a asp-page="./KontodatenAendern" asp-route-AdminID="@Model.Admin.ID" class="btn btn-lg">Accountdaten ändern</a>
+    <a asp-page="./PasswortAendern" asp-route-AdminID="@Model.Admin.ID" class="btn btn-lg">Passwort ändern</a>
+</div>
+<br />
+<hr />
+<br />
+<a asp-page="./BenutzerListe" asp-route-AdminID="@Model.Admin.ID" class="btn btn-lg">Benutzer verwalten</a>
+<br />
+<a asp-page="./FilmListe" asp-route-AdminID="@Model.Admin.ID" class="btn btn-lg">Filme verwalten</a>
+<br />
+<a asp-page="./SerienListe" asp-route-AdminID="@Model.Admin.ID" class="btn btn-lg">Serien verwalten</a>
+<br />
+<a asp-page="./GenreListe" asp-route-AdminID="@Model.Admin.ID" class="btn btn-lg">Genres verwalten</a>
+<br />
+<hr />
+<br />
+<a asp-page="../Index" class="btn btn-primary">Ausloggen</a>
+

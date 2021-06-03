@@ -1,0 +1,15 @@
+﻿@page
+@model StreamingDienst.Pages.BenutzerAnsicht.FolgeAnsehenModel
+
+@{
+    ViewData["Title"] = "Stream";
+}
+
+<h1>@Model.Folge.FolgenTitel</h1>
+<hr />
+<br />
+<div>
+    <video src="@Model.FolgenData" controls height="600" />
+</div>
+<br>
+<a asp-page="./FolgenUebersicht" asp-route-SerienID="@Model.Serie.ID" asp-route-UserID="@Model.User.ID">Zurück</a>

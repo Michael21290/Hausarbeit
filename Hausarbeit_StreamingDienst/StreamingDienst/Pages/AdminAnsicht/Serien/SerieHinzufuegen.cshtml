@@ -1,0 +1,38 @@
+﻿@page
+@model StreamingDienst.Pages.AdminAnsicht.Serien.SerieHinzufuegenModel
+
+@{
+    ViewData["Title"] = "SerieHinzufuegen";
+}
+
+<h1>Serie hinzufügen</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Titel</label>
+                <input asp-for="Serie.SerienTitel" class="form-control" />
+                <span asp-validation-for="Serie.SerienTitel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Folgenanzahl</label>
+                <input asp-for="Serie.AnzahlFolgen" class="form-control" />
+                <span asp-validation-for="Serie.AnzahlFolgen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Genre</label><br />
+                <select asp-for="GenreWahl" asp-items="Model.Genres"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Hinzufügen" class="btn btn-primary" /> | <a asp-page="../SerienListe" asp-route-AdminID="@Model.Admin.ID">Zurück</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

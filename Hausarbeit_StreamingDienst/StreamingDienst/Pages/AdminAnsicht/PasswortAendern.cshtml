@@ -1,0 +1,56 @@
+﻿@page
+@model StreamingDienst.Pages.AdminAnsicht.PasswortAendernModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Passwort ändern</h1>
+
+<hr />
+@ViewData["error"]
+<br />
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Admin.ID" />
+            <input type="hidden" asp-for="Admin.Name" />
+            <input type="hidden" asp-for="Admin.Vorname" />
+            <input type="hidden" asp-for="Admin.EMail" />
+            <input type="hidden" asp-for="Admin.IBAN" />
+            <input type="hidden" asp-for="Admin.BIC" />
+            <input type="hidden" asp-for="Admin.Bank" />
+            <input type="hidden" asp-for="Admin.Geburtsdatum" />
+            <input type="hidden" asp-for="Admin.Benutzername" />
+            <input type="hidden" asp-for="Admin.Gesperrt" />
+            <input type="hidden" asp-for="Admin.Salt" />
+            <input type="hidden" asp-for="Admin.Guthaben" />
+            <div class="form-group">
+                <label class="control-label">Altes Passwort</label>
+                <input type="password" asp-for="AltesPasswort" class="form-control" />
+                <span asp-validation-for="Admin.Hash" class="text-danger"></span>
+            </div>
+            <hr />
+            <br />
+            <div class="form-group">
+                <label class="control-label">Neues Passwort</label>
+                <input type="password" asp-for="NeuesPasswort" class="form-control" />
+                <span asp-validation-for="Admin.Hash" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Passwort wiederholen</label>
+                <input type="password" asp-for="PasswortWiederholen" class="form-control" />
+                <span asp-validation-for="Admin.Hash" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Neues Passwort Speichern" class="btn btn-primary" /> | <a asp-page="./Index" asp-route-AdminID="@Model.Admin.ID">Zurück</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

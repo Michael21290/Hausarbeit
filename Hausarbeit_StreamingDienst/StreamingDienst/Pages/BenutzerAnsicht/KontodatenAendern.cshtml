@@ -1,0 +1,69 @@
+﻿@page
+@model StreamingDienst.Pages.BenutzerAnsicht.KontodatenAendernModel
+
+@{
+    ViewData["Title"] = "Accountdaten";
+}
+
+<h1>Accountdaten</h1>
+
+<h4>Benutzer</h4>
+<hr />
+@ViewData["error"]
+<br />
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="User.ID" />
+            <input type="hidden" asp-for="User.Benutzername" />
+            <input type="hidden" asp-for="User.Gesperrt" />
+            <input type="hidden" asp-for="User.Hash" />
+            <input type="hidden" asp-for="User.Salt" />
+            <input type="hidden" asp-for="User.Guthaben" />
+            <div class="form-group">
+                <label asp-for="User.Name" class="control-label"></label>
+                <input asp-for="User.Name" class="form-control" />
+                <span asp-validation-for="User.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Vorname" class="control-label"></label>
+                <input asp-for="User.Vorname" class="form-control" />
+                <span asp-validation-for="User.Vorname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.EMail" class="control-label">E-Mail</label>
+                <input asp-for="User.EMail" class="form-control" />
+                <span asp-validation-for="User.EMail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.IBAN" class="control-label"></label>
+                <input asp-for="User.IBAN" class="form-control" />
+                <span asp-validation-for="User.IBAN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.BIC" class="control-label"></label>
+                <input asp-for="User.BIC" class="form-control" />
+                <span asp-validation-for="User.BIC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Bank" class="control-label"></label>
+                <input asp-for="User.Bank" class="form-control" />
+                <span asp-validation-for="User.Bank" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Geburtsdatum" class="control-label"></label>
+                <input asp-for="User.Geburtsdatum" class="form-control" />
+                <span asp-validation-for="User.Geburtsdatum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Änderungen speichern" class="btn btn-primary" /> | <a asp-page="./Index" asp-route-UserID="@Model.User.ID">Zurück</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

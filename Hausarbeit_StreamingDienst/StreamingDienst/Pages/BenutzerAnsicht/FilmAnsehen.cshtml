@@ -1,0 +1,15 @@
+﻿@page
+@model StreamingDienst.Pages.BenutzerAnsicht.FilmAnsehenModel
+
+@{
+    ViewData["Title"] = "Stream";
+}
+
+<h1>@Model.Film.FilmTitel</h1>
+<hr />
+<br />
+<div>
+    <video src="@Model.FilmData" controls height="600" />
+</div>
+<br>
+<a asp-page="./Bibliothek" asp-route-UserID="@Model.User.ID">Zurück</a>

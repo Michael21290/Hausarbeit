@@ -1,0 +1,101 @@
+﻿@page
+@model StreamingDienst.Pages.AdminAnsicht.BenutzerListeModel
+
+@{
+    ViewData["Title"] = "Benutzer Liste";
+}
+
+<h1>Benutzerverwaltung</h1>
+
+<p>
+    <a asp-page="./Benutzer/BenutzerErstellen" asp-route-AdminID="@Model.Admin.ID">Neuen Benutzer erstellen</a>
+</p>
+<hr />
+<br />
+<h3>Benutzer</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Vorname)
+            </th>
+            <th>
+                E-Mail
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].IBAN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].BIC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Bank)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Geburtsdatum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Benutzername)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Gesperrt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Admin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Guthaben)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.User.Where(x => !x.Admin))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vorname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EMail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IBAN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BIC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bank)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Geburtsdatum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Benutzername)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gesperrt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Admin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Guthaben)
+                </td>
+                <td>
+                    <a asp-page="./Benutzer/Gutschrift" asp-route-UserID="@item.ID" asp-route-AdminID="@Model.Admin.ID">Gutschrift</a>
+                    <a asp-page="./Benutzer/Sperren" asp-route-UserID="@item.ID" asp-route-AdminID="@Model.Admin.ID">Sperren</a>
+                    <a asp-page="./Benutzer/Loeschen" asp-route-UserID="@item.ID" asp-route-AdminID="@Model.Admin.ID">Löschen</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-page="./Index" asp-route-AdminID="@Model.Admin.ID">Zurück</a>

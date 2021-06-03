@@ -1,0 +1,38 @@
+﻿@page
+@model StreamingDienst.Pages.AdminAnsicht.GenreListeModel
+
+@{
+    ViewData["Title"] = "GenreListe";
+}
+
+<h1>Genres</h1>
+
+<p>
+    <a asp-page="./Genre/GenreHinzufuegen" asp-route-AdminID="@Model.Admin.ID">Neues Genre hinzufügen</a>
+</p>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Bezeichnung
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Genre)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GenreName)
+                </td>
+                <td>
+                    <a asp-page="./Genre/GenreDatenAendern" asp-route-GenreID="@item.ID" asp-route-AdminID="@Model.Admin.ID">Ändern</a> |
+                    <a asp-page="./Genre/GenreLöschen" asp-route-GenreID="@item.ID" asp-route-AdminID="@Model.Admin.ID">Löschen</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-page="./Index" asp-route-AdminID="@Model.Admin.ID">Zurück</a>

@@ -1,0 +1,143 @@
+﻿@page
+@model StreamingDienst.Pages.BenutzerAnsicht.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="text-center">
+    <h1>Willkommen @Model.User.Vorname</h1>
+</div>
+@ViewData["user"]
+<br />
+<br />
+<div class="form-group, text-center">
+    <a asp-page="../BenutzerAnsicht/Bibliothek" asp-route-UserID="@Model.User.ID" class="btn btn-lg">Bibliothek</a>
+    <a asp-page="../BenutzerAnsicht/Accountdaten" asp-route-UserID="@Model.User.ID" class="btn btn-lg">Accountdaten</a>
+    <a asp-page="../BenutzerAnsicht/GuthabenAufladen" asp-route-UserID="@Model.User.ID" class="btn btn-lg">Guthaben erhöhen</a>
+    <a asp-page="../BenutzerAnsicht/KontodatenAendern" asp-route-UserID="@Model.User.ID" class="btn btn-lg">Accountdaten ändern</a>
+    <a asp-page="../BenutzerAnsicht/PasswortAendern" asp-route-UserID="@Model.User.ID" class="btn btn-lg">Passwort ändern</a>
+    <a asp-page="../BenutzerAnsicht/AccountLoeschen" asp-route-UserID="@Model.User.ID" class="btn btn-lg">Account löschen</a>
+</div>
+<br />
+<br />
+<br />
+<br />
+<form method="post">
+    <p>
+        Suche: <input type="text" asp-for="Suche" class="form-control-sm" placeholder="Titel"/>
+        <br />
+        Genre:
+        <select asp-for="SucheGenre" asp-items="Model.GenreListe" class="form-control-sm">
+            <option value="">Alle</option>
+        </select>
+        <br />
+        <input type="submit" value="Suchen" class="btn btn-primary" />
+        <br />
+    </p>
+</form>
+<br />
+<h3>Filme</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Titel
+            </th>
+            <th>
+                Länge
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Film[0].Leihpreis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Film[0].Kaufpreis)
+            </th>
+            <th>
+                Genre
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Film)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FilmTitel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FilmLaenge)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Leihpreis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kaufpreis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FGenreID.GenreName)
+                </td>
+                <td>
+                    <a asp-page="../BenutzerAnsicht/FilmKauf" asp-route-FilmID="@item.ID" asp-route-UserID="@Model.User.ID">Film kaufen</a> |
+                    <a asp-page="./FilmVerleih" asp-route-FilmID="@item.ID" asp-route-UserID="@Model.User.ID">Film ausleihen</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<br />
+<h3>Serien</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Titel
+            </th>
+            <th>
+                Folgenanzahl
+            </th>
+            <th>
+                Leihpreis
+            </th>
+            <th>
+                Kaufpreis
+            </th>
+            <th>
+                Genre
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Serien)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerienTitel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnzahlFolgen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.LeihPreisListe[item.ID])
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.KaufPreisListe[item.ID])
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SGenreID.GenreName)
+                </td>
+                <td>
+                    <a asp-page="../BenutzerAnsicht/SerienKauf" asp-route-SerienID="@item.ID" asp-route-UserID="@Model.User.ID">Serie kaufen</a> |
+                    <a asp-page="./SerienVerleih" asp-route-SerienID="@item.ID" asp-route-UserID="@Model.User.ID">Serie ausleihen</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<hr />
+<br />
+<a asp-page="../Index" class="btn btn-primary">Ausloggen</a>
+

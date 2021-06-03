@@ -1,0 +1,86 @@
+﻿@page
+@model StreamingDienst.Pages.Benutzer.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Vorname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].EMail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].IBAN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].BIC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Bank)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Geburtsdatum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Benutzername)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].Gesperrt)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.User)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vorname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EMail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IBAN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BIC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bank)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Geburtsdatum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Benutzername)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gesperrt)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    <a asp-page="../BenutzerAnsicht/GuthabenAufladen" asp-route-id="@item.ID">Guthaben Aufladen</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,46 @@
+﻿@page
+@model StreamingDienst.Pages.AdminAnsicht.Folgen.FolgeHinzufuegenModel
+
+@{
+    ViewData["Title"] = "FolgeHinzufuegen";
+}
+
+<h1>Neue Folge hinzufügen</h1>
+<hr />
+<br />
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Folge.FSerienID" />
+            <div class="form-group">
+                <label class="control-label">Länge</label>
+                <input type="text" name="LaengeText" class="form-control" />
+                <span asp-validation-for="Folge.FolgenLaenge" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Folge.Kaufpreis" class="control-label"></label>
+                <input type="text" name="KaufpreisText" class="form-control" />
+                <span asp-validation-for="Folge.FolgenLaenge" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Folge.Leihpreis" class="control-label"></label>
+                <input type="text" name="LeihpreisText" class="form-control" />
+                <span asp-validation-for="Folge.FolgenLaenge" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Folge.VideoData" class="control-label"></label>
+                <input type="file" asp-for="Upload" />
+                <span asp-validation-for="Folge.VideoData" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Hinzufügen" class="btn btn-primary" /> | <a asp-page="../FolgenListe" asp-route-SerienID="@Model.Serie.ID" asp-route-AdminID="@Model.Admin.ID">Zurück</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

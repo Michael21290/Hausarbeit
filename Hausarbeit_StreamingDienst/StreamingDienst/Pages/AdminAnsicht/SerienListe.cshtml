@@ -1,0 +1,50 @@
+﻿@page
+@model StreamingDienst.Pages.AdminAnsicht.SerienListeModel
+
+@{
+    ViewData["Title"] = "SerienListe";
+}
+
+<h1>Serien</h1>
+
+<p>
+    <a asp-page="./Serien/SerieHinzufuegen" asp-route-AdminID="@Model.Admin.ID">Neue Serie hinzufügen</a>
+</p>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Titel
+            </th>
+            <th>
+                Folgenanzahl
+            </th>
+            <th>
+                Genre
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Serie)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerienTitel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnzahlFolgen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SGenreID.GenreName)
+                </td>
+                <td>
+                    <a asp-page="./Serien/SerienDatenAendern" asp-route-SerienID="@item.ID" asp-route-AdminID="@Model.Admin.ID">Ändern</a> |
+                    <a asp-page="./FolgenListe" asp-route-SerienID="@item.ID" asp-route-AdminID="@Model.Admin.ID">Folgen anzeigen</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-page="./Index" asp-route-AdminID="@Model.Admin.ID">Zurück</a>
