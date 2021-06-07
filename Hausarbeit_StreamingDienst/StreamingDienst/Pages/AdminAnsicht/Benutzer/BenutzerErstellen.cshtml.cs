@@ -30,6 +30,9 @@ namespace StreamingDienst.Pages.AdminAnsicht
         [BindProperty]
         public IList<User> UserList { get; set; }
 
+        [BindProperty]
+        public string Wiederholung { get; set; }
+
         public bool Vorhanden { get; set; } = false;
 
         public class SaltAndHash
@@ -53,7 +56,7 @@ namespace StreamingDienst.Pages.AdminAnsicht
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? AdminID)
+        public async Task<IActionResult> OnPostAsync(int AdminID)
         {
             if (!ModelState.IsValid)
             {
@@ -74,13 +77,15 @@ namespace StreamingDienst.Pages.AdminAnsicht
                 ViewData["error"] = "Der Benutzername ist bereits vorhanden.";
                 return Page();
             }
+            else if (User.Hash != Wiederholung)
+            {
+                ViewData["error"] = "Passwort stimmt nicht überein.";
+                return Page();
+            }
             else
             {
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
                 SaltAndHash sh = GenerateSaltAndHash(User.Hash);
-                sw.Stop();
-
+                
                 SaltAndHash GenerateSaltAndHash(string password)
                 {
                     Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, 32);

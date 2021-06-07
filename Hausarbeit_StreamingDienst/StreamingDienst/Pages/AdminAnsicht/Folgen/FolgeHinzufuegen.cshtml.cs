@@ -54,9 +54,8 @@ namespace StreamingDienst.Pages.AdminAnsicht.Folgen
             Serie = _context.Serie.FirstOrDefault(x => x.ID == SerienID);
             Admin = _context.User.FirstOrDefault(x => x.ID == AdminID);
 
-            if (Decimal.TryParse(LaengeText, out decimal Laenge) && 
-                Decimal.TryParse(LaengeText, out decimal Kaufpreis) && 
-                Decimal.TryParse(LaengeText, out decimal Leihpreis))
+            if (Decimal.TryParse(KaufpreisText, out decimal Kaufpreis) && 
+                Decimal.TryParse(LeihpreisText, out decimal Leihpreis))
             {
                 using (var memoryStream = new MemoryStream())
                 {
@@ -66,7 +65,7 @@ namespace StreamingDienst.Pages.AdminAnsicht.Folgen
                     {
                         VideoData = memoryStream.ToArray(),
                         FolgenTitel = Upload.FileName.Replace(".mp4", ""),
-                        FolgenLaenge = Laenge,
+                        FolgenLaenge = Folge.FolgenLaenge,
                         Kaufpreis = Kaufpreis,
                         Leihpreis = Kaufpreis,
                         FSerienID = Serie
@@ -80,7 +79,7 @@ namespace StreamingDienst.Pages.AdminAnsicht.Folgen
             }
             else
             {
-                ViewData["error"] = "Bitte geben Sie einen gültige Zahlen ein.";
+                ViewData["error"] = "Bitte geben Sie einen gültige Betrag ein.";
                 ViewData["bsp"] = "Bsp: \"5,99\".";
                 return Page();
             }   

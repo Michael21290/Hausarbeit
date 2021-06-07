@@ -28,8 +28,7 @@
                     @Html.DisplayFor(modelItem => item.GenreName)
                 </td>
                 <td>
-                    <a asp-page="./Genre/GenreDatenAendern" asp-route-GenreID="@item.ID" asp-route-AdminID="@Model.Admin.ID">Ändern</a> |
-                    <a asp-page="./Genre/GenreLöschen" asp-route-GenreID="@item.ID" asp-route-AdminID="@Model.Admin.ID">Löschen</a>
+                    <a asp-page="./Genre/GenreAendern" asp-route-GenreID="@item.ID" asp-route-AdminID="@Model.Admin.ID">Ändern</a>
                 </td>
             </tr>
         }

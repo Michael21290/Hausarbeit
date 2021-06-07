@@ -8821,19 +8821,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\gerbm\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gerbm\\Desktop\\Hausrabeit\\Hausarbeit_StreamingDienst\\StreamingDienst\\StreamingDienst.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\Hausarbeit_StreamingDienst\\StreamingDienst\\StreamingDienst.csproj",
       "projectName": "StreamingDienst",
-      "projectPath": "C:\\Users\\gerbm\\Desktop\\Hausrabeit\\Hausarbeit_StreamingDienst\\StreamingDienst\\StreamingDienst.csproj",
-      "packagesPath": "C:\\Users\\gerbm\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gerbm\\Desktop\\Hausrabeit\\Hausarbeit_StreamingDienst\\StreamingDienst\\obj\\",
+      "projectPath": "C:\\Users\\User\\Desktop\\Hausarbeit_StreamingDienst\\StreamingDienst\\StreamingDienst.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\Hausarbeit_StreamingDienst\\StreamingDienst\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\gerbm\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8888,12 +8893,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[3.1.13, 3.1.13]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -8902,7 +8901,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

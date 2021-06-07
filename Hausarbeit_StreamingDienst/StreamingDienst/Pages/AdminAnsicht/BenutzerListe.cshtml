@@ -2,7 +2,7 @@
 @model StreamingDienst.Pages.AdminAnsicht.BenutzerListeModel
 
 @{
-    ViewData["Title"] = "Benutzer Liste";
+    ViewData["Title"] = "BenutzerListe";
 }
 
 <h1>Benutzerverwaltung</h1>
@@ -44,9 +44,6 @@
                 @Html.DisplayNameFor(model => model.User[0].Gesperrt)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.User[0].Admin)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.User[0].Guthaben)
             </th>
             <th></th>
@@ -82,9 +79,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Gesperrt)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Admin)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Guthaben)

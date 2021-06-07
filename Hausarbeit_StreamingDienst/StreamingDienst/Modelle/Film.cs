@@ -12,8 +12,7 @@ namespace StreamingDienst.Modelle
         public int ID { get; set; }
         public string FilmTitel { get; set; }
 
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal FilmLaenge { get; set; }
+        public string FilmLaenge { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal Leihpreis { get; set; }

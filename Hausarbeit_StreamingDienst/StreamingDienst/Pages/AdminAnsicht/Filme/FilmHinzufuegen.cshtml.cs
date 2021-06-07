@@ -49,7 +49,7 @@ namespace StreamingDienst.Pages.AdminAnsicht.Filme
         [BindProperty]
         public string LeihpreisText { get; set; }
 
-        public IActionResult OnGet(int? AdminID)
+        public IActionResult OnGet(int AdminID)
         {
             GenreListe = _context.Genre.ToList();
             Genres = new SelectList(GenreListe.Select(x => x.GenreName).Distinct().ToList());
@@ -57,7 +57,7 @@ namespace StreamingDienst.Pages.AdminAnsicht.Filme
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? AdminID)
+        public async Task<IActionResult> OnPostAsync(int AdminID)
         {
             if (!ModelState.IsValid)
             {
@@ -68,9 +68,8 @@ namespace StreamingDienst.Pages.AdminAnsicht.Filme
             GenreListe = _context.Genre.ToList();
             Genre = GenreListe.FirstOrDefault(x => x.GenreName == GenreWahl);
 
-            if (Decimal.TryParse(LaengeText, out decimal Laenge) &&
-                Decimal.TryParse(LaengeText, out decimal Kaufpreis) &&
-                Decimal.TryParse(LaengeText, out decimal Leihpreis))
+            if (Decimal.TryParse(KaufpreisText, out decimal Kaufpreis) &&
+                Decimal.TryParse(LeihpreisText, out decimal Leihpreis))
             {
                 using (var memoryStream = new MemoryStream())
                 {
@@ -80,7 +79,7 @@ namespace StreamingDienst.Pages.AdminAnsicht.Filme
                     {
                         VideoData = memoryStream.ToArray(),
                         FilmTitel = Upload.FileName.Replace(".mp4", ""),
-                        FilmLaenge = Laenge,
+                        FilmLaenge = Film.FilmLaenge,
                         Leihpreis = Leihpreis,
                         Kaufpreis = Kaufpreis,
                         FGenreID = Genre
@@ -94,7 +93,7 @@ namespace StreamingDienst.Pages.AdminAnsicht.Filme
             }
             else
             {
-                ViewData["error"] = "Bitte geben Sie einen gültige Zahlen ein.";
+                ViewData["error"] = "Bitte geben Sie einen gültige Betrag ein.";
                 ViewData["bsp"] = "Bsp: \"5,99\".";
                 return Page();
             }

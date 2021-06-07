@@ -16,7 +16,7 @@
             <input type="hidden" asp-for="Folge.FSerienID" />
             <div class="form-group">
                 <label class="control-label">Länge</label>
-                <input type="text" name="LaengeText" class="form-control" />
+                <input asp-for="Folge.FolgenLaenge" class="form-control" />
                 <span asp-validation-for="Folge.FolgenLaenge" class="text-danger"></span>
             </div>
             <div class="form-group">

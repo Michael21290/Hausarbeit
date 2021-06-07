@@ -50,6 +50,9 @@ namespace StreamingDienst.Pages.BenutzerAnsicht
         [BindProperty]
         public User User { get; set; }
 
+        [BindProperty]
+        public string Wiederholung { get; set; }
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -69,12 +72,14 @@ namespace StreamingDienst.Pages.BenutzerAnsicht
                 ViewData["error"] = "Der Benutzername ist bereits vorhanden.";
                 return Page();
             }
+            else if(User.Hash != Wiederholung)
+            {
+                ViewData["error"] = "Passwort stimmt nicht überein.";
+                return Page();
+            }
             else
             {
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
                 SaltAndHash sh = GenerateSaltAndHash(User.Hash);
-                sw.Stop();
 
                 SaltAndHash GenerateSaltAndHash(string password)
                 {

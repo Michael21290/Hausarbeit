@@ -109,7 +109,7 @@ namespace StreamingDienst.Pages.BenutzerAnsicht
                 await _context.SaveChangesAsync();              
             }
 
-            return RedirectToPage("./Index", new { UserID = User.ID});
+            return RedirectToPage("../Index");
 
             bool CheckPassword(string userName, string password)
             {

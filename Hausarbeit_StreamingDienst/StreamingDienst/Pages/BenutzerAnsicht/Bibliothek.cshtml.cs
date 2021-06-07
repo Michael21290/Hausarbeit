@@ -58,8 +58,8 @@ namespace StreamingDienst.Pages.BenutzerAnsicht
 
             if (!string.IsNullOrEmpty(SucheGenre))
             {
-                UserFilm = UserFilm.Where(x => x.UFilmID != null && x.UFilmID.FGenreID.GenreName.ToLower().Contains(SucheGenre.ToLower())).ToList();
-                UserSerie = UserSerie.Where(x => x.USerienID != null && x.USerienID.SGenreID.GenreName.ToLower().Contains(SucheGenre.ToLower())).ToList();
+                UserFilm = UserFilm.Where(x => x.UFilmID != null && x.UFilmID.FGenreID.GenreName.Contains(SucheGenre)).ToList();
+                UserSerie = UserSerie.Where(x => x.USerienID != null && x.USerienID.SGenreID.GenreName.Contains(SucheGenre)).ToList();
             }       
 
             if (!string.IsNullOrEmpty(Suche))

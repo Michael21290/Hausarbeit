@@ -42,9 +42,12 @@ namespace StreamingDienst.Pages
         public async Task<IActionResult> OnPostAsync()
         {
             User = await _context.User.FirstOrDefaultAsync(m => m.Benutzername == Benutzername);
-            Gesperrt = _context.User.FirstOrDefault(m => m.Benutzername == Benutzername).Gesperrt;
-
-            if (CheckPassword(Benutzername, Passwort))
+            if(User != null)
+            {
+                Gesperrt = _context.User.FirstOrDefault(m => m.Benutzername == Benutzername).Gesperrt;
+            }
+           
+            if (CheckPassword(Passwort) && !Gesperrt)
             {
                 if(User.Admin)
                 {
@@ -55,15 +58,20 @@ namespace StreamingDienst.Pages
                     return RedirectToPage("./BenutzerAnsicht/Index", new { UserID = User.ID });
                 }
             }
+            else if(Gesperrt)
+            {
+                ViewData["error"] = "Ihr Account ist leider gesperrt.";
+                return Page();
+            }
             else
             {
                 ViewData["error"] = "Falscher Benutzername oder Passwort!";
                 return Page();
             }
 
-            bool CheckPassword(string userName, string password)
+            bool CheckPassword(string password)
             {
-                string salt = GetSaltFromDB(userName);
+                string salt = GetSaltFromDB();
 
                 if (salt == null)
                 {
@@ -76,13 +84,13 @@ namespace StreamingDienst.Pages
                 rfc2898DeriveBytes.IterationCount = numberOfIterations;
                 byte[] enteredHash = rfc2898DeriveBytes.GetBytes(20);
                 string str = Convert.ToBase64String(enteredHash);
-                string expectedHash = GetHashFromDB(userName);
+                string expectedHash = GetHashFromDB();
 
                 bool hashesMatch = str.Equals(expectedHash);
                 return hashesMatch;
             }
 
-            string GetHashFromDB(string userName)
+            string GetHashFromDB()
             {
                 if (User != null)
                 {
@@ -91,7 +99,7 @@ namespace StreamingDienst.Pages
                 return null;
             }
 
-            string GetSaltFromDB(string userName)
+            string GetSaltFromDB()
             {
                 if (User != null)
                 {

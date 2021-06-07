@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210513222820_InitialCreate.cs" />
+    <Compile Remove="Migrations\20210513222820_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.15">
@@ -15,11 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Pages\Benutzer\Create.cshtml" />
-    <None Include="Pages\Benutzer\Delete.cshtml" />
-    <None Include="Pages\Benutzer\Details.cshtml" />
-    <None Include="Pages\Benutzer\Edit.cshtml" />
-    <None Include="Pages\Benutzer\Index.cshtml" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

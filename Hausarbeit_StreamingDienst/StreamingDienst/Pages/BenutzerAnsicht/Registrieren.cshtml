@@ -16,8 +16,8 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="User.Salt" />
-            <input type="hidden" asp-for="User.Gesperrt" value="false"/>
-            <input type="hidden" asp-for="User.Guthaben"  value="0"/>
+            <input type="hidden" asp-for="User.Gesperrt" value="false" />
+            <input type="hidden" asp-for="User.Guthaben" value="0" />
             <div class="form-group">
                 <label asp-for="User.Name" class="control-label"></label>
                 <input asp-for="User.Name" class="form-control" />
@@ -29,7 +29,7 @@
                 <span asp-validation-for="User.Vorname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="User.EMail" class="control-label">E-Mail</label>
+                <label class="control-label">E-Mail</label>
                 <input asp-for="User.EMail" class="form-control" />
                 <span asp-validation-for="User.EMail" class="text-danger"></span>
             </div>
@@ -59,8 +59,13 @@
                 <span asp-validation-for="User.Benutzername" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="User.Hash" class="control-label">Passwort</label>
-                <input asp-for="User.Hash" class="form-control" />
+                <label class="control-label">Passwort</label>
+                <input type="password" asp-for="User.Hash" class="form-control" />
+                <span asp-validation-for="User.Hash" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Passwort wiederholen</label>
+                <input type="password" asp-for="@Model.Wiederholung" class="form-control" />
                 <span asp-validation-for="User.Hash" class="text-danger"></span>
             </div>
             <input type="submit" value="Registrieren" class="btn btn-primary" /> | <a asp-page="../Index">Zurück</a>
